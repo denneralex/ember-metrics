@@ -1,12 +1,13 @@
 import Ember from 'ember';
 
 const {
-  LinkComponent,
   inject,
   isPresent,
   get,
   String: { camelize }
 } = Ember;
+
+const LinkComponent = Ember.LinkComponent || Ember.LinkView;
 
 export default LinkComponent.reopen({
   metrics: inject.service(),
