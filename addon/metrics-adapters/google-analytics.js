@@ -23,7 +23,7 @@ export default BaseAdapter.extend({
 
     delete config.id;
 
-    const hasOptions = Ember.isBlank(Object.keys(config));
+    const hasOptions = Ember.isPresent(Object.keys(config));
 
     assert(`[ember-metrics] You must pass a valid \`id\` to the ${this.toString()} adapter`, id);
 
