@@ -13,7 +13,10 @@ export default LinkComponent.reopen({
   metrics: inject.service(),
 
   click() {
-    const attrs = Object.keys(get(this, 'attrs'));
+    // Fallback for LinkView (Ember < 1.13)
+    const attrsObj = get(this, 'attrs') || this;
+    
+    const attrs = Object.keys(attrsObj);
     const metricsProperties = this._deserializeEvent(attrs);
     const hasMetricsKeys = isPresent(Object.keys(metricsProperties));
 
