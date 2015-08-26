@@ -29,8 +29,6 @@ module.exports = {
   	//Keep base class on the folder
   	names.push('base');
 
-  	console.log(names);
-
   	var newTree = new Funnel(tree, {
   		exclude: [function (relativePath){
   			//Ignore if not metrics-adapters folder
@@ -40,8 +38,6 @@ module.exports = {
 
   			//Filename without extension from path
   			var onlyFileName = relativePath.split('\/').pop().replace(/\..+$/, '');
-
-  			console.log(onlyFileName);
 
   			//Exclude if file is not in config names
   			return names.indexOf(onlyFileName) < 0;
