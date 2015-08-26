@@ -21,6 +21,10 @@ export default BaseAdapter.extend({
     const config = get(this, 'config');
     const { id } = config;
 
+    delete config.id;
+
+    const hasOptions = Ember.isBlank(Object.keys(config));
+
     assert(`[ember-metrics] You must pass a valid \`id\` to the ${this.toString()} adapter`, id);
 
     if (canUseDOM) {
@@ -29,7 +33,12 @@ export default BaseAdapter.extend({
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
       })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-      window.ga('create', id, 'auto');
+      if(hasOptions){
+        window.ga('create', id, config);
+      } else {
+        window.ga('create', id, 'auto');
+      }
+      
       /* jshint ignore:end */
     }
   },
